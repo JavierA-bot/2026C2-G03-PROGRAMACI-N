@@ -1,7 +1,7 @@
 """Reto integrador: control de ingreso al Anfiteatro del CENAC.
 
-Nombre del estudiante: __________________________________________
-Fecha: ____________________
+Nombre del estudiante: Javier Alvarado Mora
+Fecha: 27 de junio de 2026
 
 Contexto:
 El Anfiteatro del Centro Nacional de la Cultura (CENAC), en Costa Rica, tiene
@@ -73,3 +73,66 @@ Otros casos para probar:
 
 
 # Desarrolle su solución a partir de esta línea.
+#Definción de constantes
+
+CAPACIDAD_MAXIMA = 700
+grupo_aceptados = []
+grupo_rechazados = []
+ocupacion_actual = 0
+entrada = ""
+
+print("Control de Ingreso - Anfiteatro del CENAC")
+print("Capacidad máxioma: 700 personas\n")
+
+while not (entrada == "fin"):
+  entrada = input ("Digite 'fin' para terminar. O el tamaño del grupo: ").lower().strip()
+  try:
+      cantidad_grupo = int(entrada)
+      if cantidad_grupo <= 0:
+        print("Entrada inválida: escriba un número positivo o 'fin'.")
+      elif ocupacion_actual + cantidad_grupo <= CAPACIDAD_MAXIMA:
+        grupo_aceptados.append(cantidad_grupo)
+        ocupacion_actual += cantidad_grupo
+        print(f"Grupos aceptados: ingresan {cantidad_grupo} personas")
+      else:
+        grupo_rechazados.append(cantidad_grupo)
+        print(f"Grupo rechazado: no hay espacion para {cantidad_grupo} personas")
+      espacios_disponibles = CAPACIDAD_MAXIMA - ocupacion_actual
+      print(f"Ocupación actual: {ocupacion_actual}")
+      print(f"Espacios disponibles: {espacios_disponibles}")
+  except ValueError:
+      if entrada == "fin":
+        print("Cerrando sistema...")
+      else:
+        print("Entrada inválida: escriba un número positivo o 'fin'.\n")
+        
+print(grupo_aceptados)
+print(grupo_rechazados)
+        
+print("\n========== REPORTE FINAL ==========")
+
+
+print("Grupos aceptados:", len(grupo_aceptados))
+print("Grupos rechazados:", len(grupo_rechazados))
+print("Personas admitidas:", ocupacion_actual)
+print("Capacidad máxima:", CAPACIDAD_MAXIMA)
+print("Espacios disponibles:", espacios_disponibles)
+
+porcentaje = (ocupacion_actual / CAPACIDAD_MAXIMA) * 100
+print("Porcentaje de ocupación:", round(porcentaje, 2), "%")
+
+if len(grupo_aceptados) > 0:
+  print(f"Grupo aceptado más pequeño: {min(grupo_aceptados)}")
+  print(f"Grupo aceptado más grande: {max(grupo_aceptados)}")
+else:
+  print("No hubo grupos aceptados")
+  
+if ocupacion_actual < 560:
+  print("Estado final: disponibilidad normal")
+elif ocupacion_actual < 700:
+  print("Estado final: ocupación preventiva")
+else:
+  print("Estado final: capacidad completa")
+  
+  
+  
