@@ -42,6 +42,7 @@ def imprimir_reporte(reporte):
         print(f"Clasificación: {fila["estado"]}")
         print("-" * 60)
     print(f"Cantidad de emprendimientos: {len(reporte)}")
+    
 
 #print("Cantidad de sedes", len(sedes))
 #print(type(sedes), "vrs", type(sedes))
