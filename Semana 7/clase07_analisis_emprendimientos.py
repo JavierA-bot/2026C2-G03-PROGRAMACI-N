@@ -28,10 +28,15 @@ def calular_clasificacion(porcentaje_logro):
         clasificacion_emprendimiento = "Adventencia, problemas de rentabilidad. URGE ATENCIÓN."
     return clasificacion_emprendimiento
 
+def imprimir_reporte(reporte):
+    pass
+
 #print("Cantidad de sedes", len(sedes))
 #print(type(sedes), "vrs", type(sedes))
 #print("Datos por sedes:", sedes[0].keys())
 
+reporte = []
+provincias = set()
 
 for emprendimiento in sedes:
     #emprendimiento = sedes[0] #Extraigo primer emprendimiento de la lista
@@ -43,11 +48,28 @@ for emprendimiento in sedes:
     promedio_diario = calcular_promedio(ventas)
     clasificacion = calular_clasificacion(promedio_emprendimiento)
 
-    print("\nEmprendimiento:", emprendimiento["nombre"])
-    print("Total de ventas:", total_emprendiento)
-    print("Porcentaje de ventas:", promedio_emprendimiento)
-    print("Promedio diario:", promedio_diario)
-    print("Análisis de emprendimiento:", clasificacion)
+    provincias.add(emprendimiento["provincia"]) #Crea la colección sin duplicar valores
+    
+    #print("\nEmprendimiento:", emprendimiento["nombre"])
+    #print("Total de ventas:", total_emprendiento)
+    #print("Porcentaje de ventas:", promedio_emprendimiento)
+    #print("Promedio diario:", promedio_diario)
+    #print("Análisis de emprendimiento:", clasificacion)
+    reporte.append(
+        {
+            "nombre": emprendimiento["nombre"],
+            "provincia": emprendimiento["provincia"],
+            "tipo": emprendimiento["tipo"],   
+            "total": total_emprendiento,
+            "promedio": promedio_diario,
+            "porcentaje": promedio_emprendimiento,
+            "estado": clasificacion
+            
+        }
+    )
+    imprimir_reporte(reporte)
+
+print(provincias)
 
 
 
