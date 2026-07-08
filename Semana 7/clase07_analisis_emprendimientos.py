@@ -29,7 +29,19 @@ def calular_clasificacion(porcentaje_logro):
     return clasificacion_emprendimiento
 
 def imprimir_reporte(reporte):
-    pass
+    """Imprime el reporte final de ventas por sede"""
+    print("\nREPORTE FINAL")
+    print("-" * 60)
+    for fila in reporte:
+        print(f"Emprendimiento: {fila["nombre"]}".upper())
+        print(f"Provincia: {fila["provincia"]}")
+        print(f"Tipo: {fila["tipo"]}")
+        print(f"Total semanal: ${fila["total"]:,.2f}")
+        print(f"Promedio diario: ${fila["promedio"]:,.2f}")
+        print(f"Pordentaje de Cumplimiento: {fila["porcentaje"]:,.0f}%")
+        print(f"Clasificación: {fila["estado"]}")
+        print("-" * 60)
+    print(f"Cantidad de emprendimientos: {len(reporte)}")
 
 #print("Cantidad de sedes", len(sedes))
 #print(type(sedes), "vrs", type(sedes))
@@ -67,7 +79,8 @@ for emprendimiento in sedes:
             
         }
     )
-    imprimir_reporte(reporte)
+#AL FINALIZAR FOR 
+imprimir_reporte(reporte)
 
 print(provincias)
 
